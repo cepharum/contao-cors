@@ -38,10 +38,8 @@ namespace Cepharum\Contao\CorsBundle;
  * @package Cepharum\Contao\Cors
  */
 class CorsBundle extends \Symfony\Component\HttpKernel\Bundle\Bundle {
-/*
 	public function getContainerExtension()
 	{
 		return new DependencyInjection\Extension();
 	}
-*/
 }

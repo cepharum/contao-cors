@@ -36,6 +36,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 class Extension extends ConfigurableExtension {
 	protected function loadInternal( array $mergedConfig, ContainerBuilder $container ) {
 		$loader = new YamlFileLoader( $container, new FileLocator( dirname( __DIR__ ) . '/Resources/config' ) );
-		$loader->load( 'services.yml' );
+		$loader->load( 'services.yaml' );
 	}
 }

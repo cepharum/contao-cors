@@ -30,7 +30,7 @@
  * @author: cepharum
  */
 
-namespace Cepharum\Contao\CorsBundle;
+namespace Cepharum\Contao\CorsBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
@@ -39,7 +39,6 @@ class KernelResponseListener {
 		$response = $event->getResponse();
 
 		$response->headers->add( [
-			'Content-Type' => 'image/jpeg',
 			'Access-Control-Allow-Origin' => '*',
 			'Access-Control-Allow-Method' => 'GET',
 		] );

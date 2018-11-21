@@ -33,33 +33,11 @@
 	"autoload": {
 		"psr-4": {
 			"Cepharum\\Contao\\CorsBundle\\": "src/"
-		},
-		"classmap": [
-			"src/Resources/contao/"
-		],
-		"exclude-from-classmap": [
-			"src/Resources/contao/config/",
-			"src/Resources/contao/dca/",
-			"src/Resources/contao/languages/",
-			"src/Resources/contao/templates/"
-		]
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"Cepharum\\Contao\\CorsBundle\\": "test/"
 		}
 	},
 	"extra": {
 		"branch-alias": {
 			"dev-master": "0.0.x-dev"
-		},
-		"contao": {
-			"transifex": {
-				"project": "contao-cors",
-				"prefix": "master-",
-				"languages_cto": "src/Resources/contao/languages",
-				"languages_tx": ".tx"
-			}
 		},
 		"contao-manager-plugin": "Cepharum\\Contao\\CorsBundle\\ContaoManager\\Plugin"
 	}

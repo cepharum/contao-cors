@@ -1,4 +1,4 @@
 services:
-  Cepharum\Contao\CorsBundle\KernelResponseListener:
+  Cepharum\Contao\CorsBundle\EventListener\KernelResponseListener:
     tags:
       - { name: kernel.event_listener, event: kernel.response }
