@@ -34,14 +34,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface {
 	public function getConfigTreeBuilder() {
 		$treeBuilder = new TreeBuilder();
-		$rootNode    = $treeBuilder->root( 'contao_cors' );
-
-		$rootNode
-			->children()
-				->arrayNode( 'domains' )
-					->scalarPrototype()->defaultValue( '*' )->end()
-				->end()
-			->end();
+		$treeBuilder->root( 'contao_cors' );
 
 		return $treeBuilder;
 	}
