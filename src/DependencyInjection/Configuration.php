@@ -36,6 +36,13 @@ class Configuration implements ConfigurationInterface {
 		$treeBuilder = new TreeBuilder();
 		$rootNode    = $treeBuilder->root( 'contao_cors' );
 
+		$rootNode
+			->children()
+				->arrayNode( 'domains' )
+					->scalarPrototype()->defaultValue( '*' )->end()
+				->end()
+			->end();
+
 		return $treeBuilder;
 	}
 }
