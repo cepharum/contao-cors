@@ -35,7 +35,7 @@ namespace Cepharum\Contao\CorsBundle;
 /**
  * Implements basic integration of current plugin/bundle with Symfony.
  *
- * @package Cepharum\Contao\Cors
+ * @package Cepharum\Contao\CorsBundle
  */
 class CorsBundle extends \Symfony\Component\HttpKernel\Bundle\Bundle {
 	public function getContainerExtension()
