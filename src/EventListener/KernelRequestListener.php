@@ -32,34 +32,34 @@
 
 namespace Cepharum\Contao\CorsBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpFoundation\Response;
 
-class KernelResponseListener {
+class KernelRequestListener {
 	private $domains;
 
 	public function __construct( $domains ) {
 		$this->domains = $domains;
 	}
 
-	public function onKernelResponse( FilterResponseEvent $event ) {
-		$response = $event->getResponse();
-
-		if ( array_search( '*', $this->domains ) !== false ) {
-			$response->headers->add( [
-				'Access-Control-Allow-Origin' => '*',
-				'Access-Control-Allow-Method' => 'GET',
-			] );
-		} else {
-			$request = $event->getRequest();
-			$origin = $request->headers->get( 'Origin' );
-			if ( $origin ) {
-				foreach ( $this->domains as $domain ) {
-					if ( $origin === $domain ) {
-						$response->headers->add( [
-							'Access-Control-Allow-Origin' => $origin,
-							'Access-Control-Allow-Method' => 'GET',
-						] );
-						break;
+	public function onKernelRequest( GetResponseEvent $event ) {
+		$request = $event->getRequest();
+		if ( $request->getMethod() === 'OPTIONS' ) {
+			if ( array_search( '*', $this->domains ) ) {
+				return new Response( 204, '', [
+					'Access-Control-Allow-Origin' => '*',
+					'Access-Control-Allow-Method' => 'GET',
+				] );
+			} else {
+				$origin = $request->headers->get( 'Origin' );
+				if ( $origin ) {
+					foreach ( $this->domains as $domain ) {
+						if ( $origin === $domain ) {
+							return new Response( 204, '', [
+								'Access-Control-Allow-Origin' => $origin,
+								'Access-Control-Allow-Method' => 'GET',
+							] );
+						}
 					}
 				}
 			}

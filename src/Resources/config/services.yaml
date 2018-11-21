@@ -1,4 +1,20 @@
+parameters:
+  cors.domains:
+    - "*"
+#    - http://example.com
+#    - http://foo.bar.com:8080
+
 services:
-  Cepharum\Contao\CorsBundle\EventListener\KernelResponseListener:
+  Cepharum\Contao\CorsBundle\EventListener\KernelRequestListener:
+    arguments:
+      $domains: %cors.domains%
     tags:
-      - { name: kernel.event_listener, event: kernel.response }
+      - name: kernel.event_listener
+        event: kernel.request
+
+  Cepharum\Contao\CorsBundle\EventListener\KernelResponseListener:
+    arguments:
+      $domains: %cors.domains%
+    tags:
+      - name: kernel.event_listener
+        event: kernel.response
